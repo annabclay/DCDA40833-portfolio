@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau Exploration | Anna Clay</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="lab02.html">Lab 2: AI Evaluation</a>
+            <a href="lab03.html">Lab 3: Visualization Critique</a>
+            <a href="lab04.html" class="active">Lab 4: Tableau Exploration</a>
+        </nav>
+        <h1>Tableau Exploration</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>Visualizations</h2>
+            <figure class="viz-container">
+                <img src="images/Lab4Image1.png" alt="Tableau visualization 1">
+            </figure>
+            <figure class="viz-container">
+                <img src="images/Lab4Image2.png" alt="Tableau visualization 2">
+            </figure>
+            <figure class="viz-container">
+                <img src="images/Lab4Image3.png" alt="Tableau visualization 3">
+            </figure>
+            <figure class="viz-container">
+                <img src="images/Lab4Image4.png" alt="Tableau visualization 4">
+            </figure>
+            <figure class="viz-container">
+                <img src="images/Lab4Image5.png" alt="Tableau visualization 5">
+            </figure>
+            <figure class="viz-container">
+                <img src="images/Lab4Image6.png" alt="Tableau visualization 6">
+            </figure>
+        </section>
+
+        <section>
+            <h2>Dataset Selection</h2>
+            <p>
+                At first, when I started looking for a dataset, I went to Kaggle. I remember using Kaggle in a past DCDA class, so I chose it because I was familiar with it. I initially decided to use an Amazon sales dataset. At first, I forgot how to save the dataset and put it into Tableau. I saved it as a zip file, but then realized I needed to save it as a CSV. When looking at the data, I realized that because the dataset had few files, the charts were less interesting. I also wanted to see whether some of the charts would look different if I used a different dataset. The next dataset I chose to use for my charts is the Olympic Games dataset. This dataset included multiple files, such as the Summer Olympics, the Winter Olympics, and the countries. I figured out how to add multiple CSV files into Tableau and then got started.
+            </p>
+        </section>
+
+        <section>
+            <h2>Design Process</h2>
+            <p>
+                I started playing around with the datasets and tried to group the categories that made the most sense together. Some of the categories did not make sense together, or the chart looked wrong. After deciding which categories fit the best together, I changed the font and color on some of the chart titles. This looked cleaner and more professional. Also, on one of the charts, I added color showing blue for men and orange for women. The color was a good addition to the design because it lets you tell whether an athlete is male or female at a glance, without having to click the chart.
+            </p>
+
+            <p>
+                When deciding on the best titles for my charts, I added my CSV files and screenshots to ChatGPT and asked it to generate a professional title. I think that these titles were great. Some of them are "Medal Distribution by Sport" and "Winter Olympic Participation Over Time (1924–2014)." I also asked ChatGPT whether there were any other elements I could learn from Tableau, and which charts would be most beneficial to add. One thing I realized when I asked what I should learn is that, in the "Winter Olympic Participation Over Time (1924–2014)" chart, I had CNT(WinterSD.csv) and SUM(F1). This made my chart jump to the millions. I removed SUM(F1) so that it was the number of athlete records per year. The other tip ChatGPT gave me was to add a chart titled "Gender Representation in Winter Olympics Over Time."
+            </p>
+        </section>
+
+        <section>
+            <h2>Findings</h2>
+            <p>
+                One pattern that I found unexpected is how little participation there was in the Olympics in the earlier decades. I expected the Olympics to have always had a pretty big pull. One pattern I expected, based on my graph across all years, is that there are more male athletes than female athletes who have participated. When we created the Airbnb dataset, we added a map. The map wasn't an option for my dataset. I was wondering which types of datasets support a map, because I tried to add a map with countries and cities, but it didn't work.
+            </p>
+        </section>
+
+        <section>
+            <h2>Reflection</h2>
+            <p>
+                Tableau Public can take CSV files and make data easier to digest visually. I think it's cool that you can take data from any website and add it to this to create a chart or map. I am unaware of any tools that can do this as well. Some limitations I encountered if I wanted to add all of the data in one chart, it would just look jumbled and hard to understand.
+            </p>
+        </section>
+    </main>
+</body>
+</html>
