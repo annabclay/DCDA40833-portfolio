@@ -353,6 +353,40 @@ tr:nth-child(even) {
 }
 
 /* =========================
+   Hamburger Menu
+   ========================= */
+.hamburger {
+    display: none;              /* Hidden on desktop */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 101;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: white;
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+
+/* Hamburger animation when open */
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(7px, 7px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* =========================
    Footer (semantic tag)
    ========================= */
 footer {
@@ -382,18 +416,45 @@ footer a:hover {
 
     nav {
         font-size: 0.9rem;
+        justify-content: space-between;
+        padding: 0.75rem 1rem;
+    }
+
+    .hamburger {
+        display: block;         /* Show hamburger on mobile */
     }
 
     /* Stack navigation vertically on mobile */
     nav ul {
+        position: fixed;
+        top: 0;
+        right: -100%;           /* Hidden off-screen */
+        width: 250px;
+        height: 100vh;
+        background-color: var(--primary-color);
         flex-direction: column;  /* Change from row to column */
-        align-items: center;     /* Center the stacked items */
+        align-items: flex-start;     /* Center the stacked items */
+        padding: 4rem 1.5rem 1.5rem;
+        transition: right 0.3s ease;
+        box-shadow: -2px 0 8px rgba(0, 0, 0, 0.3);
+        z-index: 100;
+        margin: 0;
+    }
+
+    nav ul.active {
+        right: 0;               /* Slide in from right */
+    }
+
+    nav li {
+        width: 100%;
+        margin-bottom: 0.5rem;
     }
 
     nav a {
         display: block;          /* Full width for easier tapping */
         width: 100%;
-        text-align: center;
+        text-align: left;
+        padding: 0.75rem 1rem;
     }
 
     main section {
