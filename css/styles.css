@@ -33,6 +33,8 @@ body.dark-mode {
     --border-color: rgba(71, 85, 105, 0.5);
 }
 
+/* All of the colors that are added in make sense to me */
+
 /* =========================
    Basic Reset & Typography
    ========================= */
@@ -200,9 +202,6 @@ nav ul {
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
-    position: relative;
-    color: var(--primary-color);
-}
     position: relative;
     color: var(--primary-color);
 }
@@ -612,6 +611,8 @@ tr:nth-child(even) {
     left: 0;
 }
 
+/* This part of the carousel makes sense to me because it is the sizing, style, color, and visibility of it */
+
 .carousel-slide.active {
     opacity: 1;
     visibility: visible;
@@ -693,6 +694,8 @@ tr:nth-child(even) {
     transition: border-color 0.2s ease;
 }
 
+/* These links are making sense to me because I wanted to add in my website links and these are the legistics of it */
+
 .carousel-links a:hover {
     border-bottom: 1px solid var(--primary-color);
 }
@@ -713,6 +716,8 @@ tr:nth-child(even) {
     z-index: 10;
 }
 
+/* This is confusing me why the background text is red */
+
 .carousel-btn:hover {
     background: rgba(42, 74, 115, 0.9);
 }
@@ -724,6 +729,11 @@ tr:nth-child(even) {
 .carousel-btn.next {
     right: 1rem;
 }
+
+/* AI explained this section to me as This CSS controls the Previous/Next arrow buttons on your carousel.
+   What it does: Positions the "next" arrow button
+   right: 1rem = Places it 1rem from the right edge of the carousel
+   Why it's used: This is the → (right arrow) button */
 
 /* Dot Indicators */
 .carousel-dots {
@@ -753,6 +763,10 @@ tr:nth-child(even) {
 .dot:hover {
     background: rgba(255, 255, 255, 0.8);
 }
+
+/* I was at first confused what the dot command is. After learning I discovered 
+   It's just the class name chosen to describe these navigation circles. In your HTML, each dot has class="dot" and the container has class="carousel-dots". You could technically call them anything (.nav-circle, .indicator, etc.) but "dot" is descriptive and common!
+   These are the navigation dots at the bottom of your carousel! You know those little circles that show which slide you're on? That's what this CSS controls. */
 
 /* Responsive carousel */
 @media (max-width: 768px) {
@@ -847,6 +861,11 @@ body.dark-mode .hamburger span {
     transform: rotate(-45deg) translate(7px, -7px);
 }
 
+/* The hamburger makes sense to me even though it is new. 
+   The child command was confusing at first. 
+   I learned that The nth-child() is a CSS selector that targets specific children by their position. It's used here to animate the hamburger menu into an X shape when clicked.
+   The lines are the child. I would not have guessed that was the name of the command but it makes it easy to remember. */
+
 /* =========================
    Footer (semantic tag)
    ========================= */
@@ -898,9 +917,16 @@ footer a:hover {
     }
 }
 
+/* I was not aware that this was for... This is an accessibility feature for people who experience motion sickness, seizures, or discomfort from animations. It respects their system settings.
+   I wonder if this feature is on most websites. */
+
 /* =========================
    Responsive Design (Mobile)
    ========================= */
+
+/* I understand that the format of the style needs to be different on a mobile device.
+   This was not new to me because I did it on other websites. */
+
 @media (max-width: 768px) {
     header h1 {
         font-size: 1.5rem;     /* Smaller on mobile */
