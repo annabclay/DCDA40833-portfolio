@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_3725aedf5a92b159dd98f0e623fdacb0 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+<div style="position:fixed; bottom:30px; left:30px; z-index:1000;
+     background:white; padding:12px 16px; border-radius:8px;
+     box-shadow:0 2px 8px rgba(0,0,0,0.2); font-family:Arial, sans-serif;
+     font-size:13px;">
+    <b style="font-size:14px;">Location Types</b><br>
+    <span style="color:red;">●</span> Restaurant<br>
+    <span style="color:purple;">●</span> Cultural<br>
+    <span style="color:green;">●</span> Park<br>
+    <span style="color:darkred;">●</span> Historical<br>
+    <span style="color:blue;">●</span> Recreation<br>
+    <span style="color:orange;">●</span> Neighborhood<br>
+    <span style="color:cadetblue;">●</span> Local Business
+</div>
+    
+            <div class="folium-map" id="map_3725aedf5a92b159dd98f0e623fdacb0" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_3725aedf5a92b159dd98f0e623fdacb0 = L.map(
+                "map_3725aedf5a92b159dd98f0e623fdacb0",
+                {
+                    center: [38.02724260000001, -84.4996585],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 13,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_7f8342575bb03d752d68cd97502dd953 = L.tileLayer(
+                "https://api.mapbox.com/styles/v1/annabclay/cmm2el98o007701s10r4i2sbh/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiYW5uYWJjbGF5IiwiYSI6ImNtbHRxbngxMDAzNWUzZG9xbnBvZXp4eWoifQ.k7BrVAlR-JiP_Y7yLIp7sw",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "Mapbox",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_7f8342575bb03d752d68cd97502dd953.addTo(map_3725aedf5a92b159dd98f0e623fdacb0);
+        
+    
+            var marker_3a542a1db4c6059c9c8264885e5d8ff6 = L.marker(
+                [38.034461, -84.495582],
+                {
+}
+            ).addTo(map_3725aedf5a92b159dd98f0e623fdacb0);
+        
+    
+            var icon_80c2d1d7d9d9389b1791b2c6537a6b02 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_246425096475117df03f9ceee134897a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e588759e9787e407e5ae1b92aa944954 = $(`<div id="html_e588759e9787e407e5ae1b92aa944954" style="width: 100.0%; height: 100.0%;">     <div style="width:280px; font-family:Arial, sans-serif;">         <h3 style="margin:0 0 8px 0; color:#333;">Great Bagel</h3>         <p style="margin:0 0 6px 0; font-size:12px; color:#888;">             <b>Restaurant</b>         </p>         <p style="margin:0 0 10px 0; font-size:13px; color:#555;">             This is my favorite bagel place in Lexington! It's the best and I get a bacon, egg, and cheese bagel.         </p>         <img src="https://www.greatbagellex.com/" alt="Great Bagel"              style="width:100%; height:auto; border-radius:6px;"              onerror="this.style.display='none'">     </div>     </div>`)[0];
+                popup_246425096475117df03f9ceee134897a.setContent(html_e588759e9787e407e5ae1b92aa944954);
+            
+        
+
+        marker_3a542a1db4c6059c9c8264885e5d8ff6.bindPopup(popup_246425096475117df03f9ceee134897a)
+        ;
+
+        
+    
+    
+            marker_3a542a1db4c6059c9c8264885e5d8ff6.bindTooltip(
+                `<div>
+                     Great Bagel
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3a542a1db4c6059c9c8264885e5d8ff6.setIcon(icon_80c2d1d7d9d9389b1791b2c6537a6b02);
+            
+    
+            var marker_085d595eeaf0ba9f78b30db831b5adba = L.marker(
+                [38.049922, -84.502401],
+                {
+}
+            ).addTo(map_3725aedf5a92b159dd98f0e623fdacb0);
+        
+    
+            var icon_ae9737fee1159dd3573da08e5dee8a00 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "purple",
+  "iconColor": "white",
+  "icon": "star",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_895ce13b6c8f2669ad371c592b8cd670 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_38a93b31cedc512b1293684b1eb7b45e = $(`<div id="html_38a93b31cedc512b1293684b1eb7b45e" style="width: 100.0%; height: 100.0%;">     <div style="width:280px; font-family:Arial, sans-serif;">         <h3 style="margin:0 0 8px 0; color:#333;">Rupp Arena</h3>         <p style="margin:0 0 6px 0; font-size:12px; color:#888;">             <b>Cultural</b>         </p>         <p style="margin:0 0 10px 0; font-size:13px; color:#555;">             This is the basketball arena where UK plays. I have been going to the games forever and it is a really special place.         </p>         <img src="https://www.rupparena.com/" alt="Rupp Arena"              style="width:100%; height:auto; border-radius:6px;"              onerror="this.style.display='none'">     </div>     </div>`)[0];
+                popup_895ce13b6c8f2669ad371c592b8cd670.setContent(html_38a93b31cedc512b1293684b1eb7b45e);
+            
+        
+
+        marker_085d595eeaf0ba9f78b30db831b5adba.bindPopup(popup_895ce13b6c8f2669ad371c592b8cd670)
+        ;
+
+        
+    
+    
+            marker_085d595eeaf0ba9f78b30db831b5adba.bindTooltip(
+                `<div>
+                     Rupp Arena
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_085d595eeaf0ba9f78b30db831b5adba.setIcon(icon_ae9737fee1159dd3573da08e5dee8a00);
+            
+    
+            var marker_588bf0419b27f47dc80b77b4d8a5b5ed = L.marker(
+                [38.03351, -84.49494],
+                {
+}
+            ).addTo(map_3725aedf5a92b159dd98f0e623fdacb0);
+        
+    
+            var icon_d1b11ffb3a2aea794d4e4bc022a43a0c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0bfee51cabfafbfac512c546f587b285 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6d53d26ef17b70ad2a43f0af55123bd0 = $(`<div id="html_6d53d26ef17b70ad2a43f0af55123bd0" style="width: 100.0%; height: 100.0%;">     <div style="width:280px; font-family:Arial, sans-serif;">         <h3 style="margin:0 0 8px 0; color:#333;">Chevy Chase</h3>         <p style="margin:0 0 6px 0; font-size:12px; color:#888;">             <b>Neighborhood</b>         </p>         <p style="margin:0 0 10px 0; font-size:13px; color:#555;">             This is the area my friends and I live in. There are shops, restaurants, and cute neighborhoods in this area.         </p>         <img src="https://www.visitlex.com/" alt="Chevy Chase"              style="width:100%; height:auto; border-radius:6px;"              onerror="this.style.display='none'">     </div>     </div>`)[0];
+                popup_0bfee51cabfafbfac512c546f587b285.setContent(html_6d53d26ef17b70ad2a43f0af55123bd0);
+            
+        
+
+        marker_588bf0419b27f47dc80b77b4d8a5b5ed.bindPopup(popup_0bfee51cabfafbfac512c546f587b285)
+        ;
+
+        
+    
+    
+            marker_588bf0419b27f47dc80b77b4d8a5b5ed.bindTooltip(
+                `<div>
+                     Chevy Chase
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_588bf0419b27f47dc80b77b4d8a5b5ed.setIcon(icon_d1b11ffb3a2aea794d4e4bc022a43a0c);
+            
+    
+            var marker_d2447c652d5cdcfaa9c9f7d16ae52ced = L.marker(
+                [37.995931, -84.496621],
+                {
+}
+            ).addTo(map_3725aedf5a92b159dd98f0e623fdacb0);
+        
+    
+            var icon_86db09bda8ff8677deaaf4b1e8efb886 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d21278cb3026d2cf3b4bbdae6f570ee8 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_9487bf53b6c041eb66ed2278cc6ec680 = $(`<div id="html_9487bf53b6c041eb66ed2278cc6ec680" style="width: 100.0%; height: 100.0%;">     <div style="width:280px; font-family:Arial, sans-serif;">         <h3 style="margin:0 0 8px 0; color:#333;">Drake's Restaurant</h3>         <p style="margin:0 0 6px 0; font-size:12px; color:#888;">             <b>Restaurant</b>         </p>         <p style="margin:0 0 10px 0; font-size:13px; color:#555;">             This restaurant has everything and is a Lexington staple. My best friends family owns the restuarant, so it makes it very special.         </p>         <img src="https://www.drakescomeplay.com/" alt="Drake's Restaurant"              style="width:100%; height:auto; border-radius:6px;"              onerror="this.style.display='none'">     </div>     </div>`)[0];
+                popup_d21278cb3026d2cf3b4bbdae6f570ee8.setContent(html_9487bf53b6c041eb66ed2278cc6ec680);
+            
+        
+
+        marker_d2447c652d5cdcfaa9c9f7d16ae52ced.bindPopup(popup_d21278cb3026d2cf3b4bbdae6f570ee8)
+        ;
+
+        
+    
+    
+            marker_d2447c652d5cdcfaa9c9f7d16ae52ced.bindTooltip(
+                `<div>
+                     Drake's Restaurant
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d2447c652d5cdcfaa9c9f7d16ae52ced.setIcon(icon_86db09bda8ff8677deaaf4b1e8efb886);
+            
+    
+            var marker_15a36cbed63ac83bf871fba8a9973ea7 = L.marker(
+                [37.968299, -84.42229],
+                {
+}
+            ).addTo(map_3725aedf5a92b159dd98f0e623fdacb0);
+        
+    
+            var icon_67e36c630877de1526b5b346eab1e4e2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "tree-deciduous",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c0bd02c7a89c5959b1d9b7c94ed75162 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4f7d22ad4d1802083aa863abc98d4a74 = $(`<div id="html_4f7d22ad4d1802083aa863abc98d4a74" style="width: 100.0%; height: 100.0%;">     <div style="width:280px; font-family:Arial, sans-serif;">         <h3 style="margin:0 0 8px 0; color:#333;">Ashland Park</h3>         <p style="margin:0 0 6px 0; font-size:12px; color:#888;">             <b>Park</b>         </p>         <p style="margin:0 0 10px 0; font-size:13px; color:#555;">             This is a park in chevy chase. It is great to walk around and has beautiful trees and greenery.         </p>         <img src="https://www.lexingtonky.gov/parks/ashland-park" alt="Ashland Park"              style="width:100%; height:auto; border-radius:6px;"              onerror="this.style.display='none'">     </div>     </div>`)[0];
+                popup_c0bd02c7a89c5959b1d9b7c94ed75162.setContent(html_4f7d22ad4d1802083aa863abc98d4a74);
+            
+        
+
+        marker_15a36cbed63ac83bf871fba8a9973ea7.bindPopup(popup_c0bd02c7a89c5959b1d9b7c94ed75162)
+        ;
+
+        
+    
+    
+            marker_15a36cbed63ac83bf871fba8a9973ea7.bindTooltip(
+                `<div>
+                     Ashland Park
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_15a36cbed63ac83bf871fba8a9973ea7.setIcon(icon_67e36c630877de1526b5b346eab1e4e2);
+            
+    
+            var marker_2200d6a2cfab4e848006576568e11288 = L.marker(
+                [38.042916, -84.454329],
+                {
+}
+            ).addTo(map_3725aedf5a92b159dd98f0e623fdacb0);
+        
+    
+            var icon_f16834c23ddccdd9aa3e9a43e95296e4 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b9b0d5675cc92ce70a60cd81c32722ef = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7e0c6b6c172b931d296becacbc28a20b = $(`<div id="html_7e0c6b6c172b931d296becacbc28a20b" style="width: 100.0%; height: 100.0%;">     <div style="width:280px; font-family:Arial, sans-serif;">         <h3 style="margin:0 0 8px 0; color:#333;">Graeter's Ice Cream</h3>         <p style="margin:0 0 6px 0; font-size:12px; color:#888;">             <b>Restaurant</b>         </p>         <p style="margin:0 0 10px 0; font-size:13px; color:#555;">             A classic ice cream stop known for its famous Black Raspberry Chip flavor. This place is nostalgic and one of my favorites!          </p>         <img src="https://www.graeters.com/" alt="Graeter's Ice Cream"              style="width:100%; height:auto; border-radius:6px;"              onerror="this.style.display='none'">     </div>     </div>`)[0];
+                popup_b9b0d5675cc92ce70a60cd81c32722ef.setContent(html_7e0c6b6c172b931d296becacbc28a20b);
+            
+        
+
+        marker_2200d6a2cfab4e848006576568e11288.bindPopup(popup_b9b0d5675cc92ce70a60cd81c32722ef)
+        ;
+
+        
+    
+    
+            marker_2200d6a2cfab4e848006576568e11288.bindTooltip(
+                `<div>
+                     Graeter's Ice Cream
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2200d6a2cfab4e848006576568e11288.setIcon(icon_f16834c23ddccdd9aa3e9a43e95296e4);
+            
+    
+            var marker_e8f0ac4248e4ba723574ad2abe26fb98 = L.marker(
+                [38.05922, -84.492998],
+                {
+}
+            ).addTo(map_3725aedf5a92b159dd98f0e623fdacb0);
+        
+    
+            var icon_4046aa2ab83a5811a5c56f67ca0b3bb4 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_90f1e15c7a70b4be253a026a654c559d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ae0e19589f31f521d6063c179621e5f3 = $(`<div id="html_ae0e19589f31f521d6063c179621e5f3" style="width: 100.0%; height: 100.0%;">     <div style="width:280px; font-family:Arial, sans-serif;">         <h3 style="margin:0 0 8px 0; color:#333;">County Club</h3>         <p style="margin:0 0 6px 0; font-size:12px; color:#888;">             <b>Restaurant</b>         </p>         <p style="margin:0 0 10px 0; font-size:13px; color:#555;">             This is a hole in the wall restaurant. The food is very good and the menu changes a lot, so you can always try something new.         </p>         <img src="https://countyclubrestaurant.com/" alt="County Club"              style="width:100%; height:auto; border-radius:6px;"              onerror="this.style.display='none'">     </div>     </div>`)[0];
+                popup_90f1e15c7a70b4be253a026a654c559d.setContent(html_ae0e19589f31f521d6063c179621e5f3);
+            
+        
+
+        marker_e8f0ac4248e4ba723574ad2abe26fb98.bindPopup(popup_90f1e15c7a70b4be253a026a654c559d)
+        ;
+
+        
+    
+    
+            marker_e8f0ac4248e4ba723574ad2abe26fb98.bindTooltip(
+                `<div>
+                     County Club
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e8f0ac4248e4ba723574ad2abe26fb98.setIcon(icon_4046aa2ab83a5811a5c56f67ca0b3bb4);
+            
+    
+            var marker_90051f2332f0e6daa1d96488b6173c23 = L.marker(
+                [38.045744, -84.602654],
+                {
+}
+            ).addTo(map_3725aedf5a92b159dd98f0e623fdacb0);
+        
+    
+            var icon_6c96b35ae14b7304931079d5cba87e9d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "darkred",
+  "iconColor": "white",
+  "icon": "tower",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_23e6b79b757f8ec3736e0a8038a0178d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_96dc7b1f2aa3bf3702f0331d6da1cabe = $(`<div id="html_96dc7b1f2aa3bf3702f0331d6da1cabe" style="width: 100.0%; height: 100.0%;">     <div style="width:280px; font-family:Arial, sans-serif;">         <h3 style="margin:0 0 8px 0; color:#333;">Keeneland</h3>         <p style="margin:0 0 6px 0; font-size:12px; color:#888;">             <b>Historical</b>         </p>         <p style="margin:0 0 10px 0; font-size:13px; color:#555;">             Keenenald is one of the reasons people travel to Lexington. It is a place to horse bet, watch the races, and have fun with friends.         </p>         <img src="https://www.keeneland.com/" alt="Keeneland"              style="width:100%; height:auto; border-radius:6px;"              onerror="this.style.display='none'">     </div>     </div>`)[0];
+                popup_23e6b79b757f8ec3736e0a8038a0178d.setContent(html_96dc7b1f2aa3bf3702f0331d6da1cabe);
+            
+        
+
+        marker_90051f2332f0e6daa1d96488b6173c23.bindPopup(popup_23e6b79b757f8ec3736e0a8038a0178d)
+        ;
+
+        
+    
+    
+            marker_90051f2332f0e6daa1d96488b6173c23.bindTooltip(
+                `<div>
+                     Keeneland
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_90051f2332f0e6daa1d96488b6173c23.setIcon(icon_6c96b35ae14b7304931079d5cba87e9d);
+            
+    
+            var marker_e47ee032d0bd1000dc81844dc6278289 = L.marker(
+                [38.023317, -84.506409],
+                {
+}
+            ).addTo(map_3725aedf5a92b159dd98f0e623fdacb0);
+        
+    
+            var icon_ef386b9cba5d8382b486a6ddaa39257d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "futbol-o",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5e6eeeb8e10b7b4c5926f5b1532346da = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_39cd8c6b8e130d5e6ee398513e82b4ec = $(`<div id="html_39cd8c6b8e130d5e6ee398513e82b4ec" style="width: 100.0%; height: 100.0%;">     <div style="width:280px; font-family:Arial, sans-serif;">         <h3 style="margin:0 0 8px 0; color:#333;">Kroger Field</h3>         <p style="margin:0 0 6px 0; font-size:12px; color:#888;">             <b>Recreation</b>         </p>         <p style="margin:0 0 10px 0; font-size:13px; color:#555;">             Home of University of Kentucky football and a major gathering place on game days. The stadium is very important to Kentucky fans.          </p>         <img src="https://ukathletics.com/facilities/kroger-field/" alt="Kroger Field"              style="width:100%; height:auto; border-radius:6px;"              onerror="this.style.display='none'">     </div>     </div>`)[0];
+                popup_5e6eeeb8e10b7b4c5926f5b1532346da.setContent(html_39cd8c6b8e130d5e6ee398513e82b4ec);
+            
+        
+
+        marker_e47ee032d0bd1000dc81844dc6278289.bindPopup(popup_5e6eeeb8e10b7b4c5926f5b1532346da)
+        ;
+
+        
+    
+    
+            marker_e47ee032d0bd1000dc81844dc6278289.bindTooltip(
+                `<div>
+                     Kroger Field
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e47ee032d0bd1000dc81844dc6278289.setIcon(icon_ef386b9cba5d8382b486a6ddaa39257d);
+            
+    
+            var marker_68157c683bb60785d526856b9ab99433 = L.marker(
+                [38.019106, -84.528361],
+                {
+}
+            ).addTo(map_3725aedf5a92b159dd98f0e623fdacb0);
+        
+    
+            var icon_d2ad0b5b2b2df8d762dab6aae276cbd0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "cadetblue",
+  "iconColor": "white",
+  "icon": "shopping-cart",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_49d96363f61d36f02bc31202ea6db06a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_25505562e3643a5006b1d83b2b6af22b = $(`<div id="html_25505562e3643a5006b1d83b2b6af22b" style="width: 100.0%; height: 100.0%;">     <div style="width:280px; font-family:Arial, sans-serif;">         <h3 style="margin:0 0 8px 0; color:#333;">Old Kentucky Chocolates</h3>         <p style="margin:0 0 6px 0; font-size:12px; color:#888;">             <b>Local Business</b>         </p>         <p style="margin:0 0 10px 0; font-size:13px; color:#555;">             My favorite chocolate shop in Lexington! They have candy bars and chocolate covored grapes that are a must!         </p>         <img src="https://www.oldkycandy.com/" alt="Old Kentucky Chocolates"              style="width:100%; height:auto; border-radius:6px;"              onerror="this.style.display='none'">     </div>     </div>`)[0];
+                popup_49d96363f61d36f02bc31202ea6db06a.setContent(html_25505562e3643a5006b1d83b2b6af22b);
+            
+        
+
+        marker_68157c683bb60785d526856b9ab99433.bindPopup(popup_49d96363f61d36f02bc31202ea6db06a)
+        ;
+
+        
+    
+    
+            marker_68157c683bb60785d526856b9ab99433.bindTooltip(
+                `<div>
+                     Old Kentucky Chocolates
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_68157c683bb60785d526856b9ab99433.setIcon(icon_d2ad0b5b2b2df8d762dab6aae276cbd0);
+            
+</script>
+</html>
