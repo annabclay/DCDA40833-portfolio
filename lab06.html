@@ -28,29 +28,6 @@
 
     <main>
         <section>
-            <h2>Overview</h2>
-            <p>
-                This lab features an interactive Folium map showcasing ten meaningful locations from my hometown of Lexington, Kentucky. Using Python, Folium, and a custom Mapbox style, I geocoded addresses from a CSV file and built an interactive web map with color-coded markers, popups, and tooltips.
-            </p>
-        </section>
-
-        <section>
-            <h2>Process</h2>
-            <p>
-                To create this map, I started by compiling a list of ten personally meaningful locations in Lexington into a CSV file, including each place's name, address, type, description, and an image URL. I then wrote a Python script using Folium and the Mapbox Geocoding API to convert each address into latitude/longitude coordinates. Each location was assigned a unique marker color and icon based on its category (Restaurant, Cultural, Park, Historical, Recreation, Neighborhood, or Local Business). I also designed a custom Mapbox basemap style to give the map a personalized look and feel.
-            </p>
-            <p>
-                The script generates styled popups for each marker that display the location's name, type, and a short personal description. A legend was added to the bottom-left corner of the map so viewers can easily identify each category. The final output is a self-contained HTML file that can be viewed in any browser.
-            </p>
-            <p>
-                <strong>Tools Used:</strong> Python, Folium, Pandas, Mapbox Studio, Mapbox Geocoding API
-            </p>
-            <p>
-                <strong>Mapbox Style URL:</strong> <a href="https://api.mapbox.com/styles/v1/annabclay/cmm2el98o007701s10r4i2sbh.html?title=view&access_token=pk.eyJ1IjoiYW5uYWJjbGF5IiwiYSI6ImNtbHRxbngxMDAzNWUzZG9xbnBvZXp4eWoifQ.k7BrVAlR-JiP_Y7yLIp7sw&zoomwheel=true&fresh=true#12/38.027/-84.500" target="_blank">View Custom Mapbox Style</a>
-            </p>
-        </section>
-
-        <section>
             <h2>Interactive Map</h2>
             <p>
                 Click on the markers below to explore my favorite spots in Lexington, KY. Each marker includes a description of why the location is meaningful to me.
@@ -58,21 +35,27 @@
             <div class="map-container">
                 <iframe src="hometown_map.html" title="Interactive Hometown Map of Lexington, KY" loading="lazy"></iframe>
             </div>
+            <p>
+                <a href="https://api.mapbox.com/styles/v1/annabclay/cmm2el98o007701s10r4i2sbh.html?title=view&access_token=pk.eyJ1IjoiYW5uYWJjbGF5IiwiYSI6ImNtbHRxbngxMDAzNWUzZG9xbnBvZXp4eWoifQ.k7BrVAlR-JiP_Y7yLIp7sw&zoomwheel=true&fresh=true#10.99/38.0634/-84.4726" target="_blank">View Full Map in Mapbox</a>
+            </p>
         </section>
 
         <section>
             <h2>Reflection</h2>
+
+            <h3>Design Inspiration</h3>
             <p>
-                Creating this interactive map of Lexington was one of the most personally meaningful assignments I have completed in this course. Unlike previous labs that focused on analyzing external datasets or critiquing existing visualizations, this project asked me to turn inward and think about the places that have shaped who I am. Selecting ten locations forced me to be intentional about what matters most to me — from Great Bagel, where I grab breakfast with friends, to Keeneland, a place that connects me to Lexington's deep horse-racing tradition.
+                For my basemap design, I wanted to use the colors of one of my favorite paintings, "Starry Night". I saved the image, then, when adding colors to my map and its elements, I used the color dropper to pick up those colors. When you do a full zoom out of the map, the water still looks blue, and the land is yellow. I tried to keep the map's mood the same as the painting's. When picking out my fonts, I tried to find some of the most fun and free fonts I could find, because that is what I thought of for the painting. I kept some of the fonts in the original font the website provided, so that so many overwhelming fonts wouldn't take away from the map. When making this map, I wanted to pick a place that was special to me: my hometown. I picked my favorite Lexington staples to add to the map.
             </p>
+
+            <h3>Cartographic Challenges</h3>
             <p>
-                On the technical side, this lab pushed me to integrate several tools I had not used together before. Writing a Python script that reads a CSV, geocodes addresses through the Mapbox API, and generates a full interactive HTML map with Folium felt like a real end-to-end data workflow. I especially appreciated learning how geocoding works — the idea that a street address can be transformed into precise coordinates through an API call was fascinating. Debugging the script taught me to pay close attention to data formatting; small issues in the CSV (like extra spaces or inconsistent type names) could break the color and icon mapping.
+                Some of the main challenges I faced when designing my basemap for multiple scales were figuring out how to show only Lexington, not the entire globe. I was very confused at first about how to change the map's view, but then I looked up a tutorial on the website and found out how to do it.
             </p>
+
+            <h3>Technical Challenges</h3>
             <p>
-                Designing a custom Mapbox basemap was another highlight. Mapbox Studio gave me control over the visual tone of the map, and I chose a style that felt clean and modern while still being easy to read. It was rewarding to see my custom tiles appear underneath the Folium markers and know that every layer of the map reflected a choice I made.
-            </p>
-            <p>
-                If I were to expand this project, I would love to add more interactive features — perhaps a sidebar that filters locations by category, or a route that connects all ten spots in a walking tour. I would also want to include actual photographs instead of website links in the popups. Overall, this lab strengthened my understanding of geospatial data, API integration, and web-based visualization, and it gave me a creative way to share a piece of home with anyone who views my portfolio.
+                One of the technical challenges I faced when creating my interactive map was how to navigate the website. Since Mapbox is new to me, I was still getting used to the new platform. In class, the exercise really helped with showing me understand how to use the website. I did not use an AI tool to help me create the map, but I used ChatGPT to answer questions about where specific tools were on the website. I also asked questions like how to improve the design with the knowledge I already have.
             </p>
         </section>
     </main>
