@@ -128,6 +128,28 @@ header {
     text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     animation: slideDown 0.5s ease-out;
+    position: relative;              /* Needed so the ::after pseudo-element positions relative to header */
+}
+
+/* =========================
+   Gradient Header Accent Line
+   =========================
+   A thin gradient strip that sits at the very bottom of the header.
+   It transitions from Light Blue → Cyan → Light Blue, matching the
+   site palette and giving the header a polished, modern edge. */
+header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;                     /* Thin accent line — subtle but visible */
+    background: linear-gradient(
+        90deg,
+        var(--secondary-color),      /* Light Blue on the left */
+        var(--accent-color),         /* Cyan in the center */
+        var(--secondary-color)       /* Light Blue on the right — creates symmetry */
+    );
 }
 
 @keyframes slideDown {
@@ -298,23 +320,26 @@ main section {
     box-shadow: 0 2px 4px var(--shadow-color);
     border: 1px solid var(--border-color);
     transition: all 0.3s ease;
-    animation: fadeInUp 0.6s ease-out both;
 }
 
-main section:nth-child(1) { animation-delay: 0.1s; }
-main section:nth-child(2) { animation-delay: 0.2s; }
-main section:nth-child(3) { animation-delay: 0.3s; }
-main section:nth-child(4) { animation-delay: 0.4s; }
+/* =========================
+   Animated Fade-In on Scroll
+   =========================
+   Instead of all sections animating on page load, sections start invisible
+   and fade in only when the user scrolls them into view. This is handled
+   by an IntersectionObserver in a <script> tag (added to each page).
+   The .fade-in-section class sets the initial hidden state,
+   and .fade-in-section.is-visible triggers the visible animation. */
+.fade-in-section {
+    opacity: 0;                          /* Start fully transparent */
+    transform: translateY(30px);         /* Start shifted 30px below final position */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* When the IntersectionObserver adds .is-visible, the section fades in and slides up */
+.fade-in-section.is-visible {
+    opacity: 1;                          /* Fully visible */
+    transform: translateY(0);            /* Slide up to final position */
 }
 
 main section:hover {
@@ -344,6 +369,54 @@ main section p {
     line-height: 1.8;
 }
 
+/* =========================
+   Styled Blockquotes for Reflections
+   =========================
+   Used to visually distinguish personal reflections and key takeaways
+   from regular paragraph content. The left gradient border and soft
+   background draw the reader's eye to these important passages. */
+blockquote.reflection {
+    background: linear-gradient(135deg, rgba(147, 197, 253, 0.08), rgba(103, 232, 249, 0.08));
+    /* Soft blue-to-cyan tinted background that complements the site palette */
+    border-left: 4px solid;
+    border-image: linear-gradient(to bottom, var(--secondary-color), var(--accent-color)) 1;
+    /* Gradient border from Light Blue to Cyan — adds visual interest to the left edge */
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 0 8px 8px 0;       /* Rounded corners on the right side only */
+    font-style: italic;                /* Italic to distinguish from regular body text */
+    color: var(--text-color);
+    position: relative;
+}
+
+/* Large decorative quotation mark before the blockquote text */
+blockquote.reflection::before {
+    content: '\201C';                   /* Unicode left double quotation mark " */
+    font-size: 3rem;
+    color: var(--secondary-color);
+    opacity: 0.3;                       /* Subtle — decorative, not distracting */
+    position: absolute;
+    top: -0.25rem;
+    left: 0.5rem;
+    font-family: Georgia, serif;        /* Serif font for a classic quotation look */
+}
+
+/* Paragraphs inside blockquotes need tighter spacing */
+blockquote.reflection p {
+    margin-bottom: 0.75rem;
+    line-height: 1.7;
+}
+
+/* Remove bottom margin from the last paragraph so padding looks even */
+blockquote.reflection p:last-child {
+    margin-bottom: 0;
+}
+
+/* Dark mode adjustments — slightly more visible tinted background */
+body.dark-mode blockquote.reflection {
+    background: linear-gradient(135deg, rgba(147, 197, 253, 0.05), rgba(103, 232, 249, 0.05));
+}
+
 /* Lists inside sections */
 main section ul,
 main section ol {
@@ -370,6 +443,34 @@ main section li {
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin-bottom: 0.5rem;
+}
+
+/* =========================
+   Headshot Image Hover Glow
+   =========================
+   Adds a soft blue glow around the headshot photo when the user hovers.
+   The glow color matches the site's secondary palette so it feels
+   intentional rather than generic. The slight scale-up makes the photo
+   feel interactive and draws attention to it. */
+.headshot-glow {
+    transition: box-shadow 0.4s ease, transform 0.4s ease;
+    cursor: pointer;                    /* Signals to the user it's interactive */
+}
+
+.headshot-glow:hover {
+    box-shadow:
+        0 0 15px rgba(147, 197, 253, 0.5),   /* Inner glow — Light Blue */
+        0 0 30px rgba(103, 232, 249, 0.3),    /* Outer glow — Cyan, softer */
+        0 4px 6px rgba(0, 0, 0, 0.1);         /* Keep the original subtle drop shadow */
+    transform: scale(1.03);                    /* Gentle zoom — just enough to notice */
+}
+
+/* In dark mode the glow pops more against the dark background */
+body.dark-mode .headshot-glow:hover {
+    box-shadow:
+        0 0 20px rgba(147, 197, 253, 0.6),
+        0 0 40px rgba(103, 232, 249, 0.35),
+        0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 /* Figure captions */
@@ -567,9 +668,17 @@ tr:nth-child(even) {
     left: 100%;
 }
 
+/* =========================
+   Portfolio Card Lift with Colored Shadow
+   =========================
+   On hover the card lifts up and casts a blue-tinted shadow that matches
+   the site's Ocean Blue palette, giving a 3-D "floating" feel instead of
+   the default gray shadow. The colored glow subtly reinforces the brand. */
 .portfolio-card:hover {
     border-color: var(--secondary-color);
-    box-shadow: 0 12px 24px var(--shadow-color);
+    box-shadow:
+        0 12px 28px rgba(42, 74, 115, 0.25),   /* Primary blue shadow for depth */
+        0  4px 10px rgba(147, 197, 253, 0.15);  /* Secondary lighter blue glow */
     transform: translateY(-8px) scale(1.02);
 }
 
