@@ -322,26 +322,6 @@ main section {
     transition: all 0.3s ease;
 }
 
-/* =========================
-   Animated Fade-In on Scroll
-   =========================
-   Instead of all sections animating on page load, sections start invisible
-   and fade in only when the user scrolls them into view. This is handled
-   by an IntersectionObserver in a <script> tag (added to each page).
-   The .fade-in-section class sets the initial hidden state,
-   and .fade-in-section.is-visible triggers the visible animation. */
-.fade-in-section {
-    opacity: 0;                          /* Start fully transparent */
-    transform: translateY(30px);         /* Start shifted 30px below final position */
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-/* When the IntersectionObserver adds .is-visible, the section fades in and slides up */
-.fade-in-section.is-visible {
-    opacity: 1;                          /* Fully visible */
-    transform: translateY(0);            /* Slide up to final position */
-}
-
 main section:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px var(--shadow-color);
@@ -426,6 +406,75 @@ main section ol {
 
 main section li {
     margin-bottom: 0.5rem;
+}
+
+/* =========================
+   Skills Tags Display
+   =========================
+   A flexbox grid of pill-shaped badges that display skills in a clean,
+   modern layout. Each tag has a subtle border and tinted background
+   that matches the site palette. On hover they lift slightly and
+   the background deepens for an interactive feel. */
+.skills-grid {
+    display: flex;                     /* Arrange tags in a horizontal row */
+    flex-wrap: wrap;                   /* Wrap to the next line when they run out of space */
+    gap: 0.6rem;                       /* Even spacing between each tag */
+    margin-top: 1rem;
+    list-style: none;                  /* Remove default bullet points */
+    padding: 0;                        /* Override default <ul> padding */
+}
+
+/* Individual skill tag — styled as a rounded pill */
+.skills-grid li {
+    background: linear-gradient(135deg, rgba(147, 197, 253, 0.12), rgba(103, 232, 249, 0.08));
+    /* Light blue-to-cyan tint that matches the site color scheme */
+    border: 1px solid var(--secondary-color);
+    color: var(--primary-color);
+    padding: 0.4rem 0.9rem;
+    border-radius: 20px;               /* Fully rounded pill shape */
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: default;
+    margin-bottom: 0;                  /* Override the default li margin */
+}
+
+/* Hover effect: tag lifts and background becomes more vivid */
+.skills-grid li:hover {
+    background: linear-gradient(135deg, rgba(147, 197, 253, 0.25), rgba(103, 232, 249, 0.18));
+    transform: translateY(-2px);
+    box-shadow: 0 3px 8px rgba(42, 74, 115, 0.15);
+}
+
+/* Dark mode: brighter text and adjusted background so tags stay readable */
+body.dark-mode .skills-grid li {
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+    background: linear-gradient(135deg, rgba(147, 197, 253, 0.1), rgba(103, 232, 249, 0.06));
+}
+
+body.dark-mode .skills-grid li:hover {
+    background: linear-gradient(135deg, rgba(147, 197, 253, 0.2), rgba(103, 232, 249, 0.12));
+}
+
+/* =========================
+   Full Text Note
+   =========================
+   A small styled callout that indicates the full written portion
+   of each lab is contained on the current page. Uses the secondary
+   color as a left border accent and a subtle background tint to
+   draw the reader's attention without being distracting. */
+.full-text-note {
+    display: inline-block;
+    background: linear-gradient(135deg,
+        rgba(147, 197, 253, 0.1),
+        rgba(103, 232, 249, 0.06));
+    border-left: 3px solid var(--secondary-color);
+    padding: 0.6rem 1rem;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin: 0.5rem 0 1.5rem 0;
 }
 
 /* =========================
