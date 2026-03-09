@@ -6,48 +6,56 @@
 /* =========================
    CSS Variables (Color Scheme)
    ========================= */
+/* These are reusable color values — I use var(--name) to reference them
+   throughout the file. If I want to change a color site-wide, I only change it here. */
 :root {
-    --primary-color: #2a4a73;      /* Ocean Blue */
-    --secondary-color: 	#93c5fd;    /* Light Blue */
-    --accent-color: 	#67e8f9;       /* Light Blue*/
-    --text-color: #333;            /* Dark gray for text */
-    --text-secondary: #64748b;     /* Lighter gray for captions */
-    --bg-color: #f4f4f4;           /* Light background */
+    --primary-color: #2a4a73;      /* Ocean Blue — used for headers, nav, and headings */
+    --secondary-color: #93c5fd;    /* Light Blue — used for borders, hover effects, and accents */
+    --accent-color: #67e8f9;       /* Cyan — used for special highlights like the theme toggle */
+    --text-color: #333;            /* Dark gray — easier on the eyes than pure black (#000) */
+    --text-secondary: #64748b;     /* Slate gray — for less important text like captions */
+    --bg-color: #f4f4f4;           /* Light gray background — softer than pure white */
     --white: #ffffff;
-    --card-bg: #ffffff;
-    --shadow-color: rgba(0, 0, 0, 0.1);
+    --card-bg: #ffffff;            /* White cards stand out against the gray background */
+    --shadow-color: rgba(0, 0, 0, 0.1);  /* rgba lets me control transparency — 0.1 = 10% visible */
     --border-color: rgba(0, 0, 0, 0.1);
 }
 
-/* Dark Mode Colors */
+/* Dark mode — when JavaScript adds "dark-mode" class to <body>,
+   these darker values replace the ones above automatically. */
 body.dark-mode {
-    --primary-color: #4a7bb7;
+    --primary-color: #4a7bb7;      /* Lighter blue so it's visible on dark backgrounds */
     --secondary-color: #5b8fc9;
     --accent-color: #67e8f9;
-    --text-color: #e4e4e7;
+    --text-color: #e4e4e7;         /* Light text for readability on dark backgrounds */
     --text-secondary: #94a3b8;
-    --bg-color: #1e293b;
-    --white: #1e293b;
-    --card-bg: #334155;
-    --shadow-color: rgba(0, 0, 0, 0.3);
+    --bg-color: #1e293b;           /* Dark navy background */
+    --white: #1e293b;              /* "White" becomes dark in dark mode — clever trick */
+    --card-bg: #334155;            /* Cards are slightly lighter than the background for contrast */
+    --shadow-color: rgba(0, 0, 0, 0.3);  /* Stronger shadows needed on dark backgrounds */
     --border-color: rgba(71, 85, 105, 0.5);
 }
-
 /* All of the colors that are added in make sense to me */
 
 /* =========================
    Basic Reset & Typography
    ========================= */
+/* Removes default browser spacing from all elements.
+   box-sizing: border-box makes padding count inside the width. */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Smooth scrolling when clicking anchor links instead of jumping */
 html {
-    scroll-behavior: smooth;       /* Smooth scrolling for anchor links */
+    scroll-behavior: smooth;
 }
 
+/* Base styles for the page — system font stack tries each font in order
+   and uses the first one available. The transition makes dark mode
+   switch smoothly instead of jumping. */
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.6;
@@ -59,7 +67,8 @@ body {
 /* =========================
    Accessibility Styles
    ========================= */
-/* Skip to main content link */
+/* Skip link — hidden off-screen until a keyboard user presses Tab.
+   Lets them jump past the nav straight to the main content. */
 .skip-link {
     position: absolute;
     top: -40px;
@@ -68,18 +77,20 @@ body {
     color: white;
     padding: 8px 16px;
     text-decoration: none;
-    z-index: 1000;
+    z-index: 1000;              /* z-index controls stacking order — 1000 puts it on top of everything */
     font-weight: 600;
     border-radius: 0 0 4px 0;
 }
 
+/* When focused, skip link slides into view */
 .skip-link:focus {
     top: 0;
     outline: 3px solid var(--accent-color);
-    outline-offset: 2px;
+    outline-offset: 2px;        /* Small gap between the element and its outline */
 }
 
-/* Screen reader only content */
+/* Hides content visually but screen readers can still read it.
+   Used for the carousel slide announcements. */
 .sr-only {
     position: absolute;
     width: 1px;
@@ -92,7 +103,7 @@ body {
     border-width: 0;
 }
 
-/* Focus visible styles for better keyboard navigation */
+/* Blue outline when navigating with keyboard (Tab key) */
 *:focus-visible {
     outline: 3px solid var(--secondary-color);
     outline-offset: 2px;
@@ -104,7 +115,7 @@ button:focus-visible {
     outline-offset: 2px;
 }
 
-/* High contrast focus for carousel controls */
+/* Brighter focus outline on carousel buttons */
 .carousel-btn:focus-visible {
     outline: 3px solid var(--accent-color);
     outline-offset: 3px;
@@ -120,7 +131,7 @@ button:focus-visible {
 /* =========================
    Header & Navigation
    ========================= */
-/* Style semantic tags directly - no classes needed! */
+/* The header bar at the top of every page */
 header {
     background-color: var(--primary-color);
     color: white;
@@ -131,12 +142,8 @@ header {
     position: relative;              /* Needed so the ::after pseudo-element positions relative to header */
 }
 
-/* =========================
-   Gradient Header Accent Line
-   =========================
-   A thin gradient strip that sits at the very bottom of the header.
-   It transitions from Light Blue → Cyan → Light Blue, matching the
-   site palette and giving the header a polished, modern edge. */
+/* Gradient accent line at the bottom of the header (Enhancement 4)
+   Uses ::after so no extra HTML is needed */
 header::after {
     content: '';
     position: absolute;
@@ -186,33 +193,35 @@ header p {
     }
 }
 
+/* Navigation bar — sticks to the top when you scroll */
 nav {
     background-color: var(--card-bg);
     padding: 0.75rem 2rem;
-    display: flex;
+    display: flex;                 /* Lays out items in a row */
     justify-content: space-between;
     align-items: center;
-    position: sticky;
+    position: sticky;              /* Stays at the top when scrolling */
     top: 0;
-    z-index: 100;
+    z-index: 100;                  /* Sits above other content */
     box-shadow: 0 2px 4px var(--shadow-color);
     transition: all 0.3s ease;
     border-bottom: 1px solid var(--border-color);
 }
 
+/* Nav links displayed as a horizontal row */
 nav ul {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex: 1;
-    list-style: none;
+    flex: 1;                       /* Takes up remaining space */
+    list-style: none;              /* Removes bullet points */
     padding: 0;
     margin: 0;
     gap: 1rem;
     flex-wrap: nowrap;
 }
 
-/* Theme Toggle Button */
+/* Theme toggle — the circular button that switches light/dark mode */
 .theme-toggle {
     background: rgba(42, 74, 115, 0.1);
     border: 1px solid var(--border-color);
@@ -266,18 +275,20 @@ nav li {
     list-style: none;
 }
 
+/* Individual nav links */
 nav a {
     color: var(--text-color);
-    text-decoration: none;
+    text-decoration: none;         /* Removes underline */
     padding: 0.6rem 1.25rem;
     transition: all 0.3s ease;
     border-radius: 8px;
-    position: relative;
+    position: relative;            /* Needed for the ::before underline effect */
     overflow: hidden;
     font-weight: 500;
     font-size: 0.95rem;
 }
 
+/* Animated underline that grows on hover */
 nav a::before {
     content: '';
     position: absolute;
@@ -286,7 +297,7 @@ nav a::before {
     width: 100%;
     height: 3px;
     background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
-    transform: scaleX(0);
+    transform: scaleX(0);          /* Starts invisible */
     transition: transform 0.3s ease;
     border-radius: 2px;
 }
@@ -304,14 +315,14 @@ nav a:hover::before {
 /* =========================
    Main Content
    ========================= */
-/* Style main semantic tag directly */
+/* Centers the content and limits width so text doesn't stretch too wide */
 main {
     max-width: 900px;          /* Don't get too wide */
     margin: 2rem auto;         /* Center horizontally */
     padding: 0 1rem;           /* Space on sides for mobile */
 }
 
-/* All sections inside main get consistent styling */
+/* Each section looks like a card with shadow and rounded corners */
 main section {
     background-color: var(--card-bg);
     padding: 2rem;
@@ -350,11 +361,10 @@ main section p {
 }
 
 /* =========================
-   Styled Blockquotes for Reflections
+   Styled Blockquotes for Reflections (Enhancement 2)
    =========================
-   Used to visually distinguish personal reflections and key takeaways
-   from regular paragraph content. The left gradient border and soft
-   background draw the reader's eye to these important passages. */
+   Makes personal reflections stand out from regular text
+   with a gradient border, tinted background, and a big quote mark. */
 blockquote.reflection {
     background: linear-gradient(135deg, rgba(147, 197, 253, 0.08), rgba(103, 232, 249, 0.08));
     /* Soft blue-to-cyan tinted background that complements the site palette */
@@ -409,12 +419,9 @@ main section li {
 }
 
 /* =========================
-   Skills Tags Display
+   Skills Tags (Pill-Shaped Badges)
    =========================
-   A flexbox grid of pill-shaped badges that display skills in a clean,
-   modern layout. Each tag has a subtle border and tinted background
-   that matches the site palette. On hover they lift slightly and
-   the background deepens for an interactive feel. */
+   Displays skills as small rounded tags in a wrapping row. */
 .skills-grid {
     display: flex;                     /* Arrange tags in a horizontal row */
     flex-wrap: wrap;                   /* Wrap to the next line when they run out of space */
@@ -460,10 +467,7 @@ body.dark-mode .skills-grid li:hover {
 /* =========================
    Full Text Note
    =========================
-   A small styled callout that indicates the full written portion
-   of each lab is contained on the current page. Uses the secondary
-   color as a left border accent and a subtle background tint to
-   draw the reader's attention without being distracting. */
+   Small callout that tells visitors the full lab write-up is on this page. */
 .full-text-note {
     display: inline-block;
     background: linear-gradient(135deg,
@@ -495,12 +499,9 @@ body.dark-mode .skills-grid li:hover {
 }
 
 /* =========================
-   Headshot Image Hover Glow
+   Headshot Image Hover Glow (Enhancement 5)
    =========================
-   Adds a soft blue glow around the headshot photo when the user hovers.
-   The glow color matches the site's secondary palette so it feels
-   intentional rather than generic. The slight scale-up makes the photo
-   feel interactive and draws attention to it. */
+   Blue glow appears around my headshot photo when hovered. */
 .headshot-glow {
     transition: box-shadow 0.4s ease, transform 0.4s ease;
     cursor: pointer;                    /* Signals to the user it's interactive */
@@ -544,7 +545,9 @@ body.dark-mode .headshot-glow:hover {
 
 /* =========================
    Map Embed Container
-   ========================= */
+   =========================
+   Holds the Folium map iframe on Lab 06.
+   padding-bottom: 75% keeps a 4:3 aspect ratio. */
 .map-container {
     position: relative;
     width: 100%;
@@ -680,7 +683,7 @@ tr:nth-child(even) {
 /* =========================
    Portfolio Cards
    ========================= */
-/* Grid layout for portfolio cards on home page */
+/* Grid container for the lab cards on the homepage */
 .portfolio-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -688,7 +691,7 @@ tr:nth-child(even) {
     margin: 2rem 0;
 }
 
-/* Individual portfolio card styling */
+/* Each card is an <a> tag so the whole card is clickable */
 .portfolio-card {
     display: block;
     background: var(--card-bg);
@@ -717,12 +720,8 @@ tr:nth-child(even) {
     left: 100%;
 }
 
-/* =========================
-   Portfolio Card Lift with Colored Shadow
-   =========================
-   On hover the card lifts up and casts a blue-tinted shadow that matches
-   the site's Ocean Blue palette, giving a 3-D "floating" feel instead of
-   the default gray shadow. The colored glow subtly reinforces the brand. */
+/* Portfolio Card Hover Effect (Enhancement 3)
+   Blue-tinted shadow instead of default gray when hovering. */
 .portfolio-card:hover {
     border-color: var(--secondary-color);
     box-shadow:
@@ -764,7 +763,9 @@ tr:nth-child(even) {
 
 /* =========================
    Image Carousel
-   ========================= */
+   =========================
+   Slideshow of project images on the homepage.
+   carousel.js handles the slide transitions. */
 .carousel {
     position: relative;
     max-width: 800px;
@@ -796,8 +797,7 @@ tr:nth-child(even) {
     left: 0;
 }
 
-/* This part of the carousel makes sense to me because it is the sizing, style, color, and visibility of it */
-
+/* Active slide becomes visible — the rest are hidden behind it */
 .carousel-slide.active {
     opacity: 1;
     visibility: visible;
@@ -879,8 +879,7 @@ tr:nth-child(even) {
     transition: border-color 0.2s ease;
 }
 
-/* These links are making sense to me because I wanted to add in my website links and these are the legistics of it */
-
+/* Underline appears on hover */
 .carousel-links a:hover {
     border-bottom: 1px solid var(--primary-color);
 }
@@ -901,8 +900,7 @@ tr:nth-child(even) {
     z-index: 10;
 }
 
-/* This is confusing me why the background text is red */
-
+/* Darker background when hovering on the arrow buttons */
 .carousel-btn:hover {
     background: rgba(42, 74, 115, 0.9);
 }
@@ -915,12 +913,10 @@ tr:nth-child(even) {
     right: 1rem;
 }
 
-/* AI explained this section to me as This CSS controls the Previous/Next arrow buttons on your carousel.
-   What it does: Positions the "next" arrow button
-   right: 1rem = Places it 1rem from the right edge of the carousel
-   Why it's used: This is the → (right arrow) button */
-
-/* Dot Indicators */
+/* =========================
+   Carousel Dot Indicators
+   =========================
+   Small circles at the bottom showing which slide is active. */
 .carousel-dots {
     position: absolute;
     bottom: 1rem;
@@ -949,11 +945,8 @@ tr:nth-child(even) {
     background: rgba(255, 255, 255, 0.8);
 }
 
-/* I was at first confused what the dot command is. After learning I discovered 
-   It's just the class name chosen to describe these navigation circles. In your HTML, each dot has class="dot" and the container has class="carousel-dots". You could technically call them anything (.nav-circle, .indicator, etc.) but "dot" is descriptive and common!
-   These are the navigation dots at the bottom of your carousel! You know those little circles that show which slide you're on? That's what this CSS controls. */
+/* Carousel adjustments for mobile screens */
 
-/* Responsive carousel */
 @media (max-width: 768px) {
     .carousel {
         margin: 2rem auto 3rem auto;
@@ -993,8 +986,10 @@ tr:nth-child(even) {
 }
 
 /* =========================
-   Hamburger Menu
-   ========================= */
+   Hamburger Menu (Mobile Navigation)
+   =========================
+   Three horizontal lines that toggle the mobile menu.
+   Hidden on desktop, visible on screens 768px and smaller. */
 .hamburger {
     display: none;
     background: rgba(42, 74, 115, 0.1);
@@ -1046,10 +1041,8 @@ body.dark-mode .hamburger span {
     transform: rotate(-45deg) translate(7px, -7px);
 }
 
-/* The hamburger makes sense to me even though it is new. 
-   The child command was confusing at first. 
-   I learned that The nth-child() is a CSS selector that targets specific children by their position. It's used here to animate the hamburger menu into an X shape when clicked.
-   The lines are the child. I would not have guessed that was the name of the command but it makes it easy to remember. */
+/* nth-child() targets each line by position to animate the 3 lines into an X shape.
+   Line 1 rotates one way, line 2 disappears, line 3 rotates the other way. */
 
 /* =========================
    Footer (semantic tag)
@@ -1102,15 +1095,15 @@ footer a:hover {
     }
 }
 
-/* I was not aware that this was for... This is an accessibility feature for people who experience motion sickness, seizures, or discomfort from animations. It respects their system settings.
-   I wonder if this feature is on most websites. */
+/* Accessibility — disables animations for users who have
+   "reduce motion" turned on in their system settings. */
 
 /* =========================
    Responsive Design (Mobile)
    ========================= */
 
-/* I understand that the format of the style needs to be different on a mobile device.
-   This was not new to me because I did it on other websites. */
+/* Adjusts the layout for phones and small tablets.
+   The hamburger menu appears and the nav becomes a slide-out panel. */
 
 @media (max-width: 768px) {
     header h1 {
@@ -1203,8 +1196,9 @@ footer a:hover {
 }
 
 /* =========================
-   Print Styles (Optional)
-   ========================= */
+   Print Styles
+   =========================
+   When someone prints the page, hide the nav and remove shadows. */
 @media print {
     nav {
         display: none;
